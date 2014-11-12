@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.13.+'
+    }
+}
+apply plugin: 'com.android.application'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:20.0.+'
+    compile 'com.google.android.gms:play-services:3.2.+'
+    compile 'net.hockeyapp.android:HockeySDK:3.0.2'
+    compile 'com.googlecode.mp4parser:isoparser:1.0.+'
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
+    signingConfigs {
+        debug {
+            storeFile file("config/debug.jks")
+            storePassword DEBUG_STORE_PASSWORD
+            keyAlias DEBUG_KEY_ALIAS
+            keyPassword DEBUG_KEY_PASSWORD
+        }
+
+        release {
+            storeFile file("config/release.keystore")
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebugBuild false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            debuggable false
+            jniDebugBuild false
+            signingConfig signingConfigs.release
+        }
+
+        foss {
+            debuggable false
+            jniDebugBuild false
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets.main {
+        jniLibs.srcDir 'libs'
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
+    sourceSets {
+        debug {
+            manifest.srcFile 'config/debug/AndroidManifest.xml'
+        }
+        release {
+            manifest.srcFile 'config/release/AndroidManifest.xml'
+        }
+        foss {
+            manifest.srcFile 'config/foss/AndroidManifest.xml'
+        }
+    }
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0.0"
+    }
+    productFlavors {
+    }
+}
