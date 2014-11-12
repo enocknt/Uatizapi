@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Telegram messenger for Android
 
 [Telegram](http://telegram.org) is a messaging app with a focus on speed and security. It’s superfast, simple and free.
@@ -30,3 +31,21 @@ Import the root folder into your IDE (tested on Android Studio), then run projec
 ### Localization
 
 We moved all translations to https://www.transifex.com/projects/p/telegram/. Please use it.
+=======
+Uatizapi - Telegram Client for Android
+========
+
+Uatizapi is a messaging app, based on the source code of the Official Telegram with a focus on speed and security. It’s superfast, simple and free.
+
+This repo contains official Uatizapi App for Android source code.
+
+API, Protocol documentation
+
+Documentation for Telegram API is available here: http://core.telegram.org/api
+
+Documentation for MTproto protocol is available here: http://core.telegram.org/mtproto
+
+Usage
+
+Import the root folder into your IDE (tested on Android Studio), then run project.
+>>>>>>> 33afe211516f67e357beb23f9dfe861a07864fee
